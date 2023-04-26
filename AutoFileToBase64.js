@@ -1,9 +1,12 @@
-(()=>{
-
-    const chooseFileToUpload = (fileChooserId) => {
+/**
+ * Author: David Rojas Chavarría, Costa Rica
+ * Github repository: https://github.com/davidmfrojas/AutoFileToBase64-Plugin
+*/
+(() => {
+     const chooseFileToUpload = (fileChooserId) => {
         const elem = document.querySelector(`#${fileChooserId}`);
         elem.click();
-    }
+     }
 
     const toBase64 = (file) => new Promise((resolve, reject) => {
         const reader = new FileReader();
@@ -11,8 +14,8 @@
         reader.onload = () => resolve(reader.result);
         reader.onerror = error => reject(error);
     });
-    
-    const loadSelectedImage = async function(idFile, idImgElement, idInput){
+
+    const loadSelectedImage = async function (idFile, idImgElement, idInput) {
         const fileTag = document.querySelector(`#${idFile}`);
         const imgTag = document.querySelector(`#${idImgElement}`);
         const inputTag = document.querySelector(`#${idInput}`);
@@ -25,8 +28,8 @@
         const inputTagIdToStoreBase64Img = fileChooser.getAttribute("InputTagIdToStoreBase64Img");
         const imgTagIdToDisplay = fileChooser.getAttribute("ImgTagIdToDisplay");
         const imgTagToshowSelectedImage = document.querySelector(`#${imgTagIdToDisplay}`);
-        imgTagToshowSelectedImage.addEventListener("click",()=> chooseFileToUpload(fileChooser.id));
-        fileChooser.addEventListener("change", async()=> loadSelectedImage(fileChooser.id, imgTagIdToDisplay, inputTagIdToStoreBase64Img));
+        imgTagToshowSelectedImage.addEventListener("click", () => chooseFileToUpload(fileChooser.id));
+        fileChooser.addEventListener("change", async () => loadSelectedImage(fileChooser.id, imgTagIdToDisplay, inputTagIdToStoreBase64Img));
     });
 
 })();
